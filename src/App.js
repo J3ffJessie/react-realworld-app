@@ -8,6 +8,7 @@ import { HomePage } from './HomePage';
 import { RegisterPage } from "./RegisterPage";
 import { LoginPage } from "./LoginPage";
 import { SettingsPage } from "./SettingsPage";
+import { Tags } from "./Tags";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <div>
           <AppHeader />
           <Switch>
-            <Route exact path="/" component={HomePage} />
+            <Route exact path="/" component={HomePage, Tags} />
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <PrivateRoute path="/settings" component={SettingsPage} />
