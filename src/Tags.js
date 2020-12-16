@@ -1,56 +1,48 @@
+/* eslint-disable jsx-a11y/anchor-is-valid */
 import React, { useState } from 'react';
 import Axios from 'axios';
 
 
 
 export function Tags() {
-
     const [requestState, setRequestState] = useState('idle')
-    const [tags, setTagsList] = useState([])
-    const [articles, setArticles] = useState([])
+    const [tags, setTags] = useState([])
 
 
     React.useEffect(() => {
         setRequestState('pending')
-        Axios.get('https://conduit.productionready.io/articles/tags')
+        Axios.get('http://conduit.productionready.io/api/tags?limit=5')
         .then((response) => {
+            console.log('response:', response)
             setRequestState('success')
-            setTagsList(response.data.articles.tags)
+            setTags(response.data.tags)
+            
         })
         .catch((error) => {
             setRequestState('failure')
-            setTagsList(<h1>Your tagslist has failed to load...</h1>)
+            setTags(<h1>Your tagslist has failed to load...</h1>)
             console.error(error)
         })
     }, [] )
 
-
-    {requestState === 'pending' && <h2>Loading....😫</h2>}
-
-
-        {requestState ==='failure' && (<h2>Sorry, the tagslist appears to be broken... 😭</h2>)}
-
-        {requestState === 'success' && (articles.map((article) => {
-
-            return (
-                <div>
+    return(
+        <React.Fragment>
+            {requestState === 'pending' && <h2>Loading ...☹️</h2>}
+            {requestState === 'failure' && <h2>Sorry</h2>}
+            {requestState === 'success' && tags.filter(tag => tag !== null).map(tag => <a>{tag}</a>)}
+                return (
+                    <div>
                 <div className='col-md-3'>
                     <div className='sidebar'>
                         <p>Popular Tags</p>
 
                         <div className='tag-list'>
-                            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
-            <a href="" className="tag-pill tag-default">{article.tags}</a>
                         </div>
                     </div>
                 </div>
                 </div>
-
-            )
-        }))}}
+                )
+        </React.Fragment>
+    )
+}
+        

@@ -2,10 +2,8 @@ import axios from 'axios';
 import React, { useState } from 'react';
 import { Tags } from './Tags';
 
-
 export function HomePage() {
 
-    
   const [requestState, setRequestState] = useState('idle')
 
   const [articles, setArticles] = useState([])
@@ -83,9 +81,11 @@ export function HomePage() {
             <span>Read more...</span>
           </a>
         </div>
+        
           )
         }))}
         </div>
+        <Tags />
     </div>
   </div>
 </div>
