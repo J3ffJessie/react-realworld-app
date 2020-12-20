@@ -45,6 +45,8 @@ export function HomePage() {
             <li className="nav-item">
               <a className="nav-link active" href="">Global Feed</a>
             </li>
+
+              
           </ul>
         </div>
 
@@ -84,8 +86,9 @@ export function HomePage() {
         
           )
         }))}
+            <Tags />
+
         </div>
-        <Tags />
     </div>
   </div>
 </div>

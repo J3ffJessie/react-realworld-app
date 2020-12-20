@@ -11,12 +11,11 @@ export function Tags() {
 
     React.useEffect(() => {
         setRequestState('pending')
-        Axios.get('http://conduit.productionready.io/api/tags?limit=5')
+        Axios.get('http://conduit.productionready.io/api/tags')
         .then((response) => {
             console.log('response:', response)
             setRequestState('success')
             setTags(response.data.tags)
-            
         })
         .catch((error) => {
             setRequestState('failure')
@@ -29,19 +28,7 @@ export function Tags() {
         <React.Fragment>
             {requestState === 'pending' && <h2>Loading ...☹️</h2>}
             {requestState === 'failure' && <h2>Sorry</h2>}
-            {requestState === 'success' && tags.filter(tag => tag !== null).map(tag => <a>{tag}</a>)}
-                return (
-                    <div>
-                <div className='col-md-3'>
-                    <div className='sidebar'>
-                        <p>Popular Tags</p>
-
-                        <div className='tag-list'>
-                        </div>
-                    </div>
-                </div>
-                </div>
-                )
+            {requestState === 'success' && tags.filter(tag => tag !== null).map(tag => <a href= '#' class="tag-pill tag-default">{tag}</a>)}
         </React.Fragment>
     )
 }
