@@ -36,6 +36,7 @@ export function HomePage() {
 
   <div className="container page">
     <div className="row">
+    <TagList/>
       <div className="col-md-9">
         <div className="feed-toggle">
           <ul className="nav nav-pills outline-active">
@@ -85,9 +86,8 @@ export function HomePage() {
         </div>
         
           )
+          
         }))}
-            <TagList/>
-
         </div>
     </div>
   </div>
