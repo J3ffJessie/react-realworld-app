@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import { Tags } from './Tags';
+import { TagList } from './Tags';
 
 export function HomePage() {
 
@@ -36,6 +36,7 @@ export function HomePage() {
 
   <div className="container page">
     <div className="row">
+    <TagList/>
       <div className="col-md-9">
         <div className="feed-toggle">
           <ul className="nav nav-pills outline-active">
@@ -85,9 +86,8 @@ export function HomePage() {
         </div>
         
           )
+          
         }))}
-            <Tags />
-
         </div>
     </div>
   </div>

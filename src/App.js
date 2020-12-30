@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route} from "react-router-dom";
 
 import { PrivateRoute } from "./PrivateRoute";
 import { AppHeader } from "./AppHeader";
@@ -8,7 +8,7 @@ import { HomePage } from './HomePage';
 import { RegisterPage } from "./RegisterPage";
 import { LoginPage } from "./LoginPage";
 import { SettingsPage } from "./SettingsPage";
-import { Editor } from "./editor";
+import { CreateArticle } from "./CreateArticle";
 
 function App() {
   return (
@@ -21,7 +21,7 @@ function App() {
             <Route path="/login" component={LoginPage} />
             <Route path="/register" component={RegisterPage} />
             <PrivateRoute path="/settings" component={SettingsPage} />
-            <PrivateRoute path="/editor" component={Editor} />
+            <PrivateRoute path="/editor" component={CreateArticle} />
           </Switch>
         </div>
       </AuthProvider>
