@@ -1,20 +1,18 @@
-import React from 'react';
+import React from "react";
 import axios from "axios";
-import {
-    client as apiClient
-} from "./api-client";
+import { client as apiClient } from "./api-client";
 
 const jwt = window.localStorage.getItem("jwt");
 
 export const client = axios.create({
-    baseURL: "https://conduit.productionready.io/api",
-    // baseURL: "http://localhost:5100/api",
-        headers: jwt
-            ? {
-            Authorization: "Token " + jwt,
-            }
-            : {},
-    });
+  baseURL: "https://conduit.productionready.io/api",
+  // baseURL: "http://localhost:5100/api",
+  headers: jwt
+    ? {
+        Authorization: "Token " + jwt,
+      }
+    : {},
+});
 
 export const getCurrentUser = () =>
   client.get("/user").then((response) => response.data.user);

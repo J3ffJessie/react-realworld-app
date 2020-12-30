@@ -14,7 +14,7 @@ export default function Article() {
 
   const [requestState, setRequestState] = useState('idle')
 
-  const [article, setArticle] = useState([])
+  const [articles, setArticle] = useState([])
 
   React.useEffect(() => {
 

@@ -2,6 +2,16 @@ import React from "react";
 // import axios from "axios";
 // import baseUrl from "./baseUrl";
 import { client as apiClient } from "./api-client";
+
+
+const validateTag = (tag) =>
+tag !== 'butt' &&
+tag
+.split('')
+.every((stringCharacter) => stringCharacter.charCodeAt(0) !== 8204)
+
+
+
 export function TagList() {
   const [tagRequestState, setTagRequestState] = React.useState("idle");
   const [tags, setTags] = React.useState([]);
@@ -22,21 +32,13 @@ export function TagList() {
     <>
       <p>Popular Tags: &zwnj; &zwnj; </p>
       <div className="tag-list">
-        {tags.filter(tags => {
-          let bool = true;
-          tags.split('').forEach(char => {
-	  		console.log({charCode: char.charCodeAt(0), test: char.charCodeAt(0) == 8204});
-            if (char.charCodeAt(0) === 8204) {
-              bool = false;
-            }
-          })
-          return bool
-        }).map((tag) => (
-          <a href="" className="tag-pill tag-default">
-            {tag}
-          </a>
-        ))
-        }
+        {tags
+          .filter(validateTag)
+          .map((tag) => (
+            <a href="" className="tag-pill tag-default">
+              {tag}
+            </a>
+          ))}
       </div>
     </>
   );

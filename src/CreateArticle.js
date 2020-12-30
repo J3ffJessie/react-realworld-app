@@ -1,16 +1,24 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
+import axios from "axios";
+import {client} from "./api-client";
 
 export const CreateArticle = () => {
-  const [title, setTitle] = useState('')
-  const [description, setDescription] = useState('')
-  const [body, setBody] = useState('')
-  const [tags, setTags] = useState([])
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [body, setBody] = useState("");
+  const [tags, setTags] = useState([]);
 
-  async function handleSubmit() {
+  async function handleSubmit(event) {
+    event.preventDefault();
     try {
-      await CreateArticle({ title, description, body, tags })
+      client.post("/articles", {
+        title,
+        description,
+        body,
+        tags,
+      });
     } catch (err) {
-      console.log(err)
+      console.log(err);
     }
   }
 
@@ -26,7 +34,7 @@ export const CreateArticle = () => {
                     type="text"
                     className="form-control form-control-lg"
                     placeholder="Article Title"
-                    onChange={e => setTitle(e.target.value)}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="form-group">
@@ -34,7 +42,7 @@ export const CreateArticle = () => {
                     type="text"
                     className="form-control"
                     placeholder="What's this article about?"
-                    onChange={e => setDescription(e.target.value)}
+                    onChange={(e) => setDescription(e.target.value)}
                   />
                 </fieldset>
                 <fieldset className="form-group">
@@ -42,7 +50,7 @@ export const CreateArticle = () => {
                     className="form-control"
                     rows="8"
                     placeholder="Write your article (in markdown)"
-                    onChange={e => setBody(e.target.value)}
+                    onChange={(e) => setBody(e.target.value)}
                   ></textarea>
                 </fieldset>
                 <fieldset className="form-group">
@@ -50,7 +58,7 @@ export const CreateArticle = () => {
                     type="text"
                     className="form-control"
                     placeholder="Enter tags"
-                    onChange={e => setTags(e.target.value)}
+                    onChange={(e) => setTags(e.target.value)}
                   />
                   <div className="tag-list"></div>
                 </fieldset>
@@ -66,4 +74,5 @@ export const CreateArticle = () => {
         </div>
       </div>
     </div>
-  )}
+  );
+};
